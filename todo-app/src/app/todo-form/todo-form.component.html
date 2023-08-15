@@ -1,1 +1,47 @@
-<p>todo-form works!</p>
+<p-card header="Todo Form">
+  <div class="form">
+    <form [formGroup]="todoForm" (ngSubmit)="submit()">
+      <div class="field-container">
+        <input
+          pInputText
+          pKeyFilter="int"
+          placeholder="Task Name"
+          formControlName="taskName"
+          class="field"
+        />
+      </div>
+      <div class="field-container">
+        <textarea
+          pKeyFilter="int"
+          rows="5"
+          cols="30"
+          placeholder="Task Description"
+          pInputTextarea
+          formControlName="taskDescription"
+          class="field"
+        ></textarea>
+      </div>
+      <div class="field-container">
+        <p-dropdown
+          [options]="assigneeList"
+          formControlName="assignTo"
+          optionLabel="name"
+          placeholder="Assign To"
+          class="field"
+        ></p-dropdown>
+      </div>
+      <div class="field-container">
+        <p-dropdown
+          [options]="priorityList"
+          formControlName="priority"
+          placeholder="Priority"
+          class="field"
+        ></p-dropdown>
+      </div>
+
+      <div class="button-container">
+        <p-button label="Submit" type="submit"></p-button>
+      </div>
+    </form>
+  </div>
+</p-card>
