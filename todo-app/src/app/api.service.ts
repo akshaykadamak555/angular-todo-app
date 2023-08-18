@@ -7,14 +7,16 @@ import { Observable } from 'rxjs';
 })
 export class ApiService {
 
+  todoListURL = 'http://localhost:3000/todolist';
+
   constructor(private http: HttpClient) { }
 
   getTodoList(): Observable<any> {
-    return this.http.get('http://localhost:3000/todolist');
+    return this.http.get(this.todoListURL);
   }
 
   createNewTodoTask(payload: any) {
-    return this.http.post('http://localhost:3000/todolist', payload);
+    return this.http.post(this.todoListURL, payload);
   }
 
 }

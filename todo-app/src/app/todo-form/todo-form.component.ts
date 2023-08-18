@@ -1,8 +1,6 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-
-
-
+import { ApiService } from '../api.service';
 
 @Component({
   selector: 'app-todo-form',
@@ -12,10 +10,10 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 export class TodoFormComponent {
   todoForm: FormGroup;
 
-  assigneeList = [{ name: 'Akshay Kadam' }, { name: 'Sachin More' }];
-  priorityList = ['High', 'Medium', 'Low']
+  assigneeList = ['Akshay Kadam', 'Sachin More' ];
+  priorityList = ['High', 'Medium', 'Low'];
 
-  constructor(private formBuilder: FormBuilder) {
+  constructor(private formBuilder: FormBuilder, private apiService: ApiService) {
     this.createForm();
   }
 
@@ -30,5 +28,7 @@ export class TodoFormComponent {
 
   submit() {
     console.log('form', this.todoForm.value);
+    this.apiService.createNewTodoTask(this.todoForm.value).subscribe(response =>
+      console.log('response', response))
   }
 }
