@@ -8,7 +8,13 @@ import { ApiService } from '../api.service';
 })
 export class TodoListComponent implements OnInit {
   todoList;
-  constructor(private apiService: ApiService) {}
+  constructor(private apiService: ApiService) {
+    this.apiService.isNewRecordCreated$.subscribe(value => {
+      if (value) {
+        this.getTodoList();
+      }
+    })
+  }
 
   ngOnInit(): void {
     this.getTodoList();

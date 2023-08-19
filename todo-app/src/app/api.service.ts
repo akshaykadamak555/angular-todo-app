@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -8,6 +8,8 @@ import { Observable } from 'rxjs';
 export class ApiService {
 
   todoListURL = 'http://localhost:3000/todolist';
+
+  isNewRecordCreated$ = new BehaviorSubject<boolean>(false);
 
   constructor(private http: HttpClient) { }
 
@@ -19,4 +21,7 @@ export class ApiService {
     return this.http.post(this.todoListURL, payload);
   }
 
+  newRecordCreated(value: boolean) {
+    this.isNewRecordCreated$.next(value);
+  }
 }

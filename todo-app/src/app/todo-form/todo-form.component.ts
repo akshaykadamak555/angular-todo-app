@@ -30,5 +30,6 @@ export class TodoFormComponent {
     console.log('form', this.todoForm.value);
     this.apiService.createNewTodoTask(this.todoForm.value).subscribe(response =>
       console.log('response', response))
+      this.apiService.newRecordCreated(true);
   }
 }
