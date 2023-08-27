@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ApiService } from '../api.service';
+import { MessageService } from 'primeng/api';
 
 @Component({
   selector: 'app-todo-form',
@@ -13,7 +14,7 @@ export class TodoFormComponent {
   assigneeList = ['Akshay Kadam', 'Sachin More' ];
   priorityList = ['High', 'Medium', 'Low'];
 
-  constructor(private formBuilder: FormBuilder, private apiService: ApiService) {
+  constructor(private formBuilder: FormBuilder, private apiService: ApiService, private messageService: MessageService) {
     this.createForm();
   }
 
@@ -31,5 +32,6 @@ export class TodoFormComponent {
     this.apiService.createNewTodoTask(this.todoForm.value).subscribe(response =>
       console.log('response', response))
       this.apiService.newRecordCreated(true);
+      this.messageService.add({ severity: 'success', summary: 'Success', detail: 'Task Created' });
   }
 }
