@@ -1,5 +1,13 @@
 <p-card header="Todo List">
-  <p-table [value]="todoList" [tableStyle]="{ 'min-width': '50rem' }">
+  <p-table
+    [value]="todoList"
+    [tableStyle]="{ 'min-width': '50rem' }"
+    [paginator]="true"
+    [rows]="5"
+    [showCurrentPageReport]="true"
+    [rowsPerPageOptions]="[5,10, 25, 50]"
+    [scrollable]="true" scrollHeight="400px"
+  >
     <ng-template pTemplate="header">
       <tr>
         <th>Id</th>
