@@ -26,4 +26,8 @@ export class TodoListComponent implements OnInit {
       console.log('todo list', response);
     });
   }
+
+  onEdit(product: any) {
+    console.log('selected product', product);
+  }
 }
