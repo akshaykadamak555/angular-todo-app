@@ -24,4 +24,12 @@ export class ApiService {
   newRecordCreated(value: boolean) {
     this.isNewRecordCreated$.next(value);
   }
+
+  updateTask(payload: any): Observable<any> {
+    return this.http.put(`${this.todoListURL}/${payload.id}`, payload);
+  }
+
+  deleteTask(id: any): Observable<any> {
+    return this.http.delete(`${this.todoListURL}/${id}`);
+  }
 }

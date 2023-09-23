@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { ApiService } from '../api.service';
+import { MessageService } from 'primeng/api';
 
 @Component({
   selector: 'app-todo-list',
@@ -8,7 +9,8 @@ import { ApiService } from '../api.service';
 })
 export class TodoListComponent implements OnInit {
   todoList;
-  constructor(private apiService: ApiService) {
+  @Output() selectedTask = new EventEmitter();
+  constructor(private apiService: ApiService, private messageService: MessageService) {
     this.apiService.isNewRecordCreated$.subscribe(value => {
       if (value) {
         this.getTodoList();
@@ -29,5 +31,14 @@ export class TodoListComponent implements OnInit {
 
   onEdit(product: any) {
     console.log('selected product', product);
+    this.selectedTask.emit(product);
+  }
+
+  onDelete(product: any) {
+    this.apiService.deleteTask(product.id).subscribe(response =>
+      console.log('response', response));
+      this.apiService.newRecordCreated(true);
+      this.messageService.add({ severity: 'warn', detail: 'Task Deleted' });
+    this.getTodoList();
   }
 }

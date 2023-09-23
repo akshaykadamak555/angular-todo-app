@@ -6,5 +6,11 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
+  selectedProduct: any;
   title = 'todo-app';
+
+  selectedTask(selectedProduct: any) {
+      console.log('selected product', selectedProduct);
+      this.selectedProduct = selectedProduct;
+    }
 }

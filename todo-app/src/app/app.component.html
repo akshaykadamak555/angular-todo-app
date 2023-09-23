@@ -4,10 +4,10 @@
   </div>
   <div class="container">
     <div class="todo-form">
-      <app-todo-form></app-todo-form>
+      <app-todo-form [selectedProduct]="selectedProduct"></app-todo-form>
     </div>
     <div class="todo-list">
-      <app-todo-list> </app-todo-list>
+      <app-todo-list (selectedTask)="selectedTask($event)"> </app-todo-list>
     </div>
   </div>
 </div>
